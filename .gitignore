@@ -1,0 +1,17 @@
+#!/bin/bash
+for User in $(cd /home;ls --hide=lost+found); do
+echo "$User online since:"
+who | awk '{ print "\tUser: "$1" - Terminal: "$2" - "$3" "$4}'
+NOW=$(date +%s -d "Jan 1, 1980 00:00:01")
+USR=$(lastlog |awk ' {print $1, ":",$5,$6,$9 } ' | grep $User)
+USRDATE=$(echo $USR | cut -d ":" -f2)
+(( USRDATE = $(date --date "$USRDATE" +%s) / 86400 ))
+(( NOW = NOW/86400 ))
+(( DAYS = NOW - USRDATE ))
+done
+FILE="/home/radu/watchuser"
+OUTPUTFILE="/tmp/watchuser.out"
+if [ "$1" == 'out' ]
+then
+FILE=$OUTPUTFILE  # you had an error here
+fi                # and another one error here
