@@ -13,5 +13,5 @@ FILE="/home/radu/watchuser"
 OUTPUTFILE="/tmp/watchuser.out"
 if [ "$1" == 'out' ]
 then
-FILE=$OUTPUTFILE  # you had an error here
-fi                # and another one error here
+FILE=$OUTPUTFILE  
+fi               
